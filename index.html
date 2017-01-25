@@ -1,35 +1,93 @@
 <!DOCTYPE html>
 <html lang="en" ng-app="myApp">
-<head>
-  <meta charset="UTF-8">
-  <title>WeatherApp</title>
-<!-- bower:css -->
-<link rel="stylesheet" href="bower_components/angular-toastr/dist/angular-toastr.css" />
-<!-- endbower -->
 
-<!-- inject:css -->
-<!-- endinject -->
+<head>
+    <meta charset="UTF-8">
+    <title>WeatherApp</title>
+    <!-- bower:css -->
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="bower_components/angular-toastr/dist/angular-toastr.css" />
+    <!-- endbower -->
+    <!-- inject:css -->
+    <link href="https://fonts.googleapis.com/css?family=Raleway:200,400" rel="stylesheet">
+    <link rel="stylesheet" href="/app/styles/styles.css">
+    <!-- endinject -->
 </head>
 
 <body ng-controller="WeatherController as vm">
-<!-- bower:js -->
-<script src="bower_components/angular/angular.js"></script>
-<script src="bower_components/jquery/dist/jquery.js"></script>
-<script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
-<script src="bower_components/angular-toastr/dist/angular-toastr.tpls.js"></script>
-<script src="bower_components/angular-animate/angular-animate.js"></script>
-<!-- endbower -->
-<h1>Weather App</h1>
-
-<input type="text" id="city" placeholder="Enter city here" ng-model="vm.city">
-<button ng-click="">Check Weather!</button>
-
-<pre>{{ vm.weather.city.name | json }}</pre>
-
-<!-- inject:js -->
-<script src="/app/app.js"></script>
-<script src="/app/weather.controller.js"></script>
-<script src="/app/weather.factory.js"></script>
-<!-- endinject -->
+    <!-- bower:js -->
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="bower_components/angular-toastr/dist/angular-toastr.tpls.js"></script>
+    <script src="bower_components/angular-animate/angular-animate.js"></script>
+    <!-- endbower -->
+    <div class="container">
+        <legend>
+        	<h1> What Weather Where</h1>
+        </legend>
+        <div class="form-inline form-group">
+            <input type="text" class="form-control" id="city" placeholder="Enter city here" ng-model="vm.city">
+            <button class="btn btn-primary" type="button" ng-click="vm.getWeather()">Check Weather!</button>
+        </div>
+        <div class="row">
+            <div class="panel panel-primary col-xs-5" id="results">
+                <div class="panel-heading">City Information</div>
+                <table class="table">
+                    <tr>
+                    	<td></td>
+                        <td>{{ vm.weather.name }}</td>
+                        <td></td>
+                    </tr>
+                    <tr >
+                        <td>Temperature</td>
+                        <td>Pressure</td>
+                        <td>Humidity</td>
+                    </tr>
+                    <tr >
+                        <td>{{ vm.weather.main.temp }}</td>
+                        <td>{{ vm.weather.main.pressure }}</td>
+                        <td>{{ vm.weather.main.humidity }}</td>
+                    </tr>
+                    <tr>
+                        <td>Low - Temp</td>
+                        <td>High - Temp</td>
+                        <td>Wind Speed</td>
+                    </tr>
+                    <tr >
+                        <td>{{ vm.weather.main.temp_min }}</td>
+                        <td>{{ vm.weather.main.temp_max }}</td>
+                        <td>{{ vm.weather.wind.speed }}</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="panel panel-info col-xs-5 col-xs-offset-2" id="history">
+            	<div class="panel-heading">Search History</div>
+            	
+            	     <table class="table">
+                    <tr>
+                    	<td>City</td>
+                        <td>Temperature</td>
+                        <td>Date</td>
+                    </tr>
+                    <tr ng-repeat="data in vm.searchHistory">
+                        <td> {{ data.name }}</td>
+                        <td>{{ data.temp }}</td>
+                        <td>{{ data.date | date:'yyyy-MM-dd hh:mm:ss a' }}</td>
+                    </tr>
+                    
+                </table>
+            	<ul class="list-group">
+            		<li class="list-group-item"></li>
+            	</ul>
+            </div>
+        </div>
+    </div>
+    <!-- inject:js -->
+    <script src="/app/app.js"></script>
+    <script src="/app/weather.controller.js"></script>
+    <script src="/app/weather.factory.js"></script>
+    <!-- endinject -->
 </body>
+
 </html>

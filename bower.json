@@ -4,7 +4,7 @@
     "chelseamidgette <chelsea.n.midgette@gmail.com>"
   ],
   "description": "",
-  "main": "",
+  "main": "gulpfile.js",
   "license": "MIT",
   "homepage": "",
   "ignore": [
