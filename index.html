@@ -22,7 +22,7 @@
     <script src="bower_components/angular-toastr/dist/angular-toastr.tpls.js"></script>
     <script src="bower_components/angular-animate/angular-animate.js"></script>
     <!-- endbower -->
-    <div class="container">
+    <div class="container-fluid">
         <legend>
         	<h1> What Weather Where</h1>
         </legend>
@@ -31,13 +31,13 @@
             <button class="btn btn-primary" type="button" ng-click="vm.getWeather()">Check Weather!</button>
         </div>
         <div class="row">
-            <div class="panel panel-primary col-xs-5" id="results">
+            <div class="panel panel-primary col-xs-6 align-left" id="results">
                 <div class="panel-heading">City Information</div>
-                <table class="table">
+                <table class="table table-responsive text-center">
                     <tr>
                     	<td></td>
                         <td>{{ vm.weather.name }}</td>
-                        <td></td>
+                       	<td></td>
                     </tr>
                     <tr >
                         <td>Temperature</td>
@@ -61,10 +61,10 @@
                     </tr>
                 </table>
             </div>
-            <div class="panel panel-info col-xs-5 col-xs-offset-2" id="history">
+            <div class="panel panel-info col-xs-6 align-right" id="history">
             	<div class="panel-heading">Search History</div>
             	
-            	     <table class="table">
+            	<table class="table table-responsive text-center">
                     <tr>
                     	<td>City</td>
                         <td>Temperature</td>
@@ -76,10 +76,7 @@
                         <td>{{ data.date | date:'yyyy-MM-dd hh:mm:ss a' }}</td>
                     </tr>
                     
-                </table>
-            	<ul class="list-group">
-            		<li class="list-group-item"></li>
-            	</ul>
+                </table>	
             </div>
         </div>
     </div>
